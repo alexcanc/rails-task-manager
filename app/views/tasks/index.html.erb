@@ -5,7 +5,9 @@
     <li>
       <%= link_to task.title, task_path(task) %>
       <%= check_box_tag "completed_#{task.id}", 'completed', task.completed, disabled: true %>
-      <%= link_to "🗑️", task_path(task), method: :delete, data: { confirm: 'Are you sure you want to delete this task?' } %>
+      <%= link_to task_path(task.id), data: {turbo_method: :delete, turbo_confirm: "Delete #{task.title}?"} do %>
+        🗑️
+      <% end %>
     </li>
   <% end %>
 </ul>
